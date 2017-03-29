@@ -1,33 +1,37 @@
 # load the dplyr package
 library(dplyr)
 
-# feature file:
+#Download and unzip files
+url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+download.file(url, destfile="./Data.zip")
+unzip("./Data.zip")
 
-# getting rid of the index column
-features <- read.table("UCI HAR Dataset/features.txt", header = FALSE, sep = " ", row.names = 1)
+
+# feature file: getting rid of the index column
+features <- read.table("./UCI HAR Dataset/features.txt", header = FALSE, sep = " ", row.names = 1)
 
 #change the index name to variable
 names(features) <- "Variable"
 
 #read the x_test data
 
-x_test <- read.fwf("UCI HAR Dataset/test/X_test.txt", header = FALSE, sep = "", widths = rep(16, 561))
+x_test <- read.fwf("./UCI HAR Dataset/test/X_test.txt", header = FALSE, sep = "", widths = rep(16, 561))
 
 # read the x_train data
 
-x_train <- read.fwf("UCI HAR Dataset/train/X_train.txt", header = FALSE, sep = "", widths = rep(16,561))
+x_train <- read.fwf("./UCI HAR Dataset/train/X_train.txt", header = FALSE, sep = "", widths = rep(16,561))
 
 # read the y_test data
 
-y_test <- read.table("UCI HAR Dataset/test/y_test.txt", header = FALSE)
+y_test <- read.table("./UCI HAR Dataset/test/y_test.txt", header = FALSE)
 
 # read the y_training data
 
-y_training <- read.table("UCI HAR Dataset/train/y_train.txt", header = FALSE)
+y_training <- read.table("./UCI HAR Dataset/train/y_train.txt", header = FALSE)
 
 # read the activity label file
 
-activity <- read.table("UCI HAR Dataset/activity_labels.txt", header = FALSE, sep = " ")
+activity <- read.table("./UCI HAR Dataset/activity_labels.txt", header = FALSE, sep = " ")
 
 #change the column name of y_test and y_training to "activity"
 
